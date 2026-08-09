@@ -1,26 +1,13 @@
 # AI Study Assistant
 
-An AI-powered study assistant that allows users to upload study documents, search their content using RAG, and ask questions using natural language.
+An AI-powered study platform that lets students upload their study material and ask questions directly from their documents. The system uses semantic search and RAG to provide answers based on the uploaded content.
 
 ## Features
 
-- User registration and JWT authentication
-- PDF, DOCX and TXT document upload
-- Document text extraction
-- FAISS-based semantic search
-- RAG-powered document chat
-- Conversation and question history
-- AI-generated answers using Groq
-
-## Tech Stack
-
-- Python
-- Flask
-- SQLAlchemy
-- JWT
-- FAISS
-- Sentence Transformers
-- Groq API
-- HTML
-- CSS
-- JavaScript
+- User registration and JWT-based login.
+- Upload PDF, DOCX and TXT study materials.
+- Automatic text extraction and document processing.
+- Semantic search using Sentence Transformers and FAISS.
+- Document-based AI chat using Groq.
+- Conversation and question history.
+- Clean and responsive study dashboard.
