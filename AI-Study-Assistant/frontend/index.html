@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | AI Study Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="auth-page">
+
+
+    <div class="auth-wrapper">
+
+
+        <section class="auth-intro">
+
+            <div class="auth-brand">
+
+    <img
+        src="assets/graduation-cap.png"
+        alt="AI Study Assistant"
+        class="graduation-logo"
+    >
+
+    <div class="auth-brand-name">
+        AI Study Assistant
+    </div>
+
+    <div class="auth-brand-subtitle">
+        Your smart study companion
+    </div>
+
+</div>
+
+
+            <h1>
+                Study from your
+                <br>
+                own material.
+            </h1>
+
+
+            <p>
+                Upload your notes, textbooks and study
+                documents. Ask questions naturally and
+                get answers grounded in the material
+                you're actually studying.
+            </p>
+
+
+            <div class="auth-features">
+
+
+                <div class="auth-feature">
+
+                    <div class="auth-feature-icon">
+                        ✓
+                    </div>
+
+                    <span>
+                        Ask questions directly from your documents
+                    </span>
+
+                </div>
+
+
+                <div class="auth-feature">
+
+                    <div class="auth-feature-icon">
+                        ◇
+                    </div>
+
+                    <span>
+                        Smart document search using RAG
+                    </span>
+
+                </div>
+
+
+                <div class="auth-feature">
+
+                    <div class="auth-feature-icon">
+                        ◉
+                    </div>
+
+                    <span>
+                        Keep your conversations organized
+                    </span>
+
+                </div>
+
+
+                <div class="auth-feature">
+
+                    <div class="auth-feature-icon">
+                        🎤
+                    </div>
+
+                    <span>
+                        Ask questions using your voice
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <section class="auth-card">
+
+
+            <h2>
+                Welcome back
+            </h2>
+
+
+            <p class="auth-subtitle">
+                Sign in to continue your study session.
+            </p>
+
+            <form
+                id="loginForm"
+            >
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+                <div
+                    id="loginMessage"
+                    style="
+                        display:none;
+                        margin-bottom:15px;
+                        padding:11px 13px;
+                        border-radius:10px;
+                        font-size:13px;
+                        background:#fff0f0;
+                        color:#b84242;
+                    "
+                ></div>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary auth-submit"
+                    id="loginButton"
+                >
+                    Sign in
+                </button>
+
+
+            </form>
+
+            <div class="auth-footer">
+
+                New to Study Assistant?
+
+                <a href="register.html">
+                    Create an account
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+const API_URL =
+    "http://127.0.0.1:5000/api";
+
+
+const loginForm =
+    document.getElementById(
+        "loginForm"
+    );
+
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
+
+const loginMessage =
+    document.getElementById(
+        "loginMessage"
+    );
+
+function showMessage(
+    message
+) {
+
+    loginMessage.textContent =
+        message;
+
+    loginMessage.style.display =
+        "block";
+
+}
+
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document.getElementById(
+                "email"
+            ).value.trim();
+
+
+        const password =
+            document.getElementById(
+                "password"
+            ).value;
+
+
+        if (
+            !email ||
+            !password
+        ) {
+
+            showMessage(
+                "Please enter your email and password."
+            );
+
+            return;
+
+        }
+
+
+        loginButton.disabled =
+            true;
+
+        loginButton.textContent =
+            "Signing in...";
+
+
+        loginMessage.style.display =
+            "none";
+
+
+        try {
+
+            const response =
+                await fetch(
+
+                    `${API_URL}/auth/login`,
+
+                    {
+
+                        method:
+                            "POST",
+
+                        headers: {
+
+                            "Content-Type":
+                                "application/json"
+
+                        },
+
+                        body:
+                            JSON.stringify({
+
+                                email:
+                                    email,
+
+                                password:
+                                    password
+
+                            })
+
+                    }
+
+                );
+
+
+            const data =
+                await response.json();
+
+
+            console.log(
+                "Login response:",
+                data
+            );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+
+                    data.detail ||
+                    data.message ||
+                    "Login failed."
+
+                );
+
+            }
+
+            localStorage.setItem(
+
+                "access_token",
+
+                data.access_token
+
+            );
+
+            if (
+                data.user
+            ) {
+
+                localStorage.setItem(
+
+                    "user",
+
+                    JSON.stringify(
+                        data.user
+                    )
+
+                );
+
+            }
+
+            window.location.href =
+                "dashboard.html";
+
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Login error:",
+                error
+            );
+
+
+            showMessage(
+
+                error.message ||
+                "Unable to login. Please try again."
+
+            );
+
+        }
+
+
+        finally {
+
+            loginButton.disabled =
+                false;
+
+            loginButton.textContent =
+                "Sign in";
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

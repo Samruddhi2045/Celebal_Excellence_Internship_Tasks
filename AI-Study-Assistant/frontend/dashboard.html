@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Dashboard | AI Study Assistant
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-brand">
+
+            <img
+                src="assets/graduation-cap.png"
+                alt="AI Study Assistant"
+                class="sidebar-logo"
+            >
+
+            <div>
+
+                <h2>
+                    AI Study Assistant
+                </h2>
+
+                <span>
+                    Your smart study companion
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+
+            <a
+                href="dashboard.html"
+                class="nav-item active"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a
+                href="#documents"
+                class="nav-item"
+                onclick="scrollToDocuments(event)"
+            >
+
+                <span class="nav-icon">
+                    ▣
+                </span>
+
+                <span>
+                    My Documents
+                </span>
+
+            </a>
+
+
+            <a
+                href="history.html"
+                class="nav-item"
+            >
+
+                <span class="nav-icon">
+                    ◷
+                </span>
+
+                <span>
+                    History
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+
+            <button
+                class="logout-btn"
+                type="button"
+                onclick="logout()"
+            >
+
+                <span>
+                    ⇥
+                </span>
+
+                <span>
+                    Logout
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+
+            <div class="topbar-heading">
+
+                <span class="page-eyebrow">
+                    STUDY WORKSPACE
+                </span>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+                <p>
+                    Everything you need to study
+                    from your own material.
+                </p>
+
+            </div>
+
+            <div class="user-section">
+
+
+                <div class="user-avatar">
+
+                    <span id="userInitial">
+                        S
+                    </span>
+
+                </div>
+
+
+                <div class="user-details">
+
+                    <strong id="username">
+                        Student
+                    </strong>
+
+                    <small id="userEmail">
+                        student@example.com
+                    </small>
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+        <section class="welcome-card">
+
+
+            <div class="welcome-content">
+
+
+                <span class="welcome-label">
+                    YOUR STUDY SPACE
+                </span>
+
+
+                <h2>
+
+                    Welcome back,
+                    <span id="welcomeName">
+                        Student
+                    </span>.
+
+                </h2>
+
+
+                <p>
+                    Upload your notes, textbooks or
+                    reference material and ask questions
+                    whenever you need help.
+                </p>
+
+
+            </div>
+
+
+            <div class="welcome-mark">
+
+                <img
+                    src="assets/graduation-cap.png"
+                    alt=""
+                >
+
+            </div>
+
+
+        </section>
+
+        <section class="stats-grid">
+
+            <div
+                class="stat-card"
+                onclick="scrollToDocuments()"
+                role="button"
+                tabindex="0"
+            >
+
+                <div class="stat-icon">
+                    ▣
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span>
+                        Documents
+                    </span>
+
+                    <strong id="documentCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <span class="stat-arrow">
+                    →
+                </span>
+
+            </div>
+
+            <div
+                class="stat-card stat-card-clickable"
+                onclick="openHistory()"
+                role="button"
+                tabindex="0"
+            >
+
+                <div class="stat-icon">
+                    ◌
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span>
+                        Conversations
+                    </span>
+
+                    <strong id="conversationCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <span class="stat-arrow">
+                    →
+                </span>
+
+            </div>
+
+            <div
+                class="stat-card stat-card-clickable"
+                onclick="openHistory()"
+                role="button"
+                tabindex="0"
+            >
+
+                <div class="stat-icon">
+                    ?
+                </div>
+
+
+                <div class="stat-content">
+
+                    <span>
+                        Questions asked
+                    </span>
+
+                    <strong id="questionCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <span class="stat-arrow">
+                    →
+                </span>
+
+            </div>
+
+
+        </section>
+
+        <section class="content-section">
+
+
+            <div class="section-header">
+
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        NEW MATERIAL
+                    </span>
+
+                    <h2>
+                        Add study material
+                    </h2>
+
+                    <p>
+                        Upload a PDF, DOCX or TXT file
+                        to start learning from it.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="upload-card">
+
+                <div
+                    class="upload-area"
+                    id="uploadArea"
+                    role="button"
+                    tabindex="0"
+                >
+
+
+                    <div class="upload-icon">
+                        ↑
+                    </div>
+
+
+                    <h3>
+                        Choose a document
+                    </h3>
+
+
+                    <p>
+                        Click here to browse files
+                        from your computer.
+                    </p>
+
+
+                    <span
+                        class="file-name"
+                        id="fileName"
+                    >
+                        No file selected
+                    </span>
+
+
+                    <input
+                        type="file"
+                        id="documentFile"
+                        accept=".pdf,.docx,.txt"
+                        hidden
+                    >
+
+
+                </div>
+
+                <button
+                    type="button"
+                    class="upload-btn"
+                    id="uploadButton"
+                    onclick="uploadDocument()"
+                >
+                    Upload document
+                </button>
+
+                <div
+                    id="uploadMessage"
+                    class="message"
+                ></div>
+
+
+            </div>
+
+
+        </section>
+
+        <section
+            class="content-section"
+            id="documents"
+        >
+
+
+            <div class="section-header">
+
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        YOUR MATERIAL
+                    </span>
+
+                    <h2>
+                        My documents
+                    </h2>
+
+                    <p>
+                        Choose a document to start
+                        an AI-powered study session.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="refresh-btn"
+                    onclick="loadDocuments()"
+                >
+                    ↻
+                    Refresh
+                </button>
+
+
+            </div>
+
+            <div
+                id="documentsList"
+                class="documents-list"
+            >
+
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        ▣
+                    </div>
+
+                    <h3>
+                        No documents yet
+                    </h3>
+
+                    <p>
+                        Upload your first study document
+                        to begin.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</div>
+
+
+<script>
+
+const API_URL =
+    "http://127.0.0.1:5000/api";
+
+const token =
+    localStorage.getItem(
+        "access_token"
+    );
+
+
+const userData =
+    localStorage.getItem(
+        "user"
+    );
+
+
+if (!token) {
+
+    window.location.href =
+        "index.html";
+
+}
+
+if (userData) {
+
+    try {
+
+        const user =
+            JSON.parse(
+                userData
+            );
+
+
+        const name =
+            user.name ||
+            "Student";
+
+
+        document.getElementById(
+            "username"
+        ).textContent =
+            name;
+
+
+        document.getElementById(
+            "welcomeName"
+        ).textContent =
+            name;
+
+
+        document.getElementById(
+            "userEmail"
+        ).textContent =
+            user.email ||
+            "";
+
+
+        document.getElementById(
+            "userInitial"
+        ).textContent =
+            name
+                .charAt(0)
+                .toUpperCase();
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "User data error:",
+            error
+        );
+
+    }
+
+}
+
+const fileInput =
+    document.getElementById(
+        "documentFile"
+    );
+
+
+const uploadArea =
+    document.getElementById(
+        "uploadArea"
+    );
+
+
+const fileName =
+    document.getElementById(
+        "fileName"
+    );
+
+function openFilePicker() {
+
+    fileInput.click();
+
+}
+
+
+uploadArea.addEventListener(
+    "click",
+    openFilePicker
+);
+
+
+uploadArea.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+
+            event.preventDefault();
+
+            openFilePicker();
+
+        }
+
+    }
+);
+
+fileInput.addEventListener(
+    "change",
+    function() {
+
+        if (
+            this.files &&
+            this.files.length > 0
+        ) {
+
+            fileName.textContent =
+                this.files[0].name;
+
+            uploadArea.classList.add(
+                "file-selected"
+            );
+
+        }
+
+        else {
+
+            fileName.textContent =
+                "No file selected";
+
+            uploadArea.classList.remove(
+                "file-selected"
+            );
+
+        }
+
+    }
+);
+
+async function uploadDocument() {
+
+
+    const file =
+        fileInput.files[0];
+
+
+    if (!file) {
+
+        showMessage(
+            "Choose a document before uploading.",
+            "error"
+        );
+
+        openFilePicker();
+
+        return;
+
+    }
+
+
+    const extension =
+        file.name
+            .split(".")
+            .pop()
+            .toLowerCase();
+
+
+    const allowed =
+        [
+            "pdf",
+            "docx",
+            "txt"
+        ];
+
+
+    if (
+        !allowed.includes(
+            extension
+        )
+    ) {
+
+        showMessage(
+            "Only PDF, DOCX and TXT files are supported.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "file",
+        file
+    );
+
+
+    const button =
+        document.getElementById(
+            "uploadButton"
+        );
+
+
+    button.disabled =
+        true;
+
+
+    button.textContent =
+        "Processing document...";
+
+
+    showMessage(
+        "Uploading and preparing your document...",
+        ""
+    );
+
+
+    try {
+
+
+        const response =
+            await fetch(
+
+                `${API_URL}/documents/upload`,
+
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+
+                    },
+
+                    body:
+                        formData
+
+                }
+
+            );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Upload response:",
+            data
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+
+                data.detail ||
+                data.error ||
+                "Upload failed."
+
+            );
+
+        }
+
+
+
+        showMessage(
+            "Your document is ready. You can start studying.",
+            "success"
+        );
+
+
+        fileInput.value =
+            "";
+
+
+        fileName.textContent =
+            "No file selected";
+
+
+        uploadArea.classList.remove(
+            "file-selected"
+        );
+
+
+        await loadDocuments();
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Upload error:",
+            error
+        );
+
+
+        showMessage(
+
+            error.message ||
+            "Unable to upload document.",
+
+            "error"
+
+        );
+
+    }
+
+
+    finally {
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "Upload document";
+
+    }
+
+}
+
+function showMessage(
+    text,
+    type
+) {
+
+    const message =
+        document.getElementById(
+            "uploadMessage"
+        );
+
+
+    message.textContent =
+        text;
+
+
+    message.className =
+        "message";
+
+
+    if (type) {
+
+        message.classList.add(
+            type
+        );
+
+    }
+
+}
+
+async function loadDocuments() {
+
+    try {
+
+
+        const response =
+            await fetch(
+
+                `${API_URL}/documents`,
+
+                {
+
+                    method:
+                        "GET",
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+
+                    }
+
+                }
+
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+
+                data.detail ||
+                "Could not load documents."
+
+            );
+
+        }
+
+
+        displayDocuments(
+
+            data.documents ||
+            []
+
+        );
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Documents error:",
+            error
+        );
+
+
+        showMessage(
+            "Unable to load your documents.",
+            "error"
+        );
+
+    }
+
+}
+
+async function loadStats() {
+
+    try {
+
+
+        const response =
+            await fetch(
+
+                `${API_URL}/history/stats`,
+
+                {
+
+                    method:
+                        "GET",
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+
+                    }
+
+                }
+
+            );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "Dashboard stats:",
+            data
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+
+                data.detail ||
+                "Could not load statistics."
+
+            );
+
+        }
+
+
+        document.getElementById(
+            "conversationCount"
+        ).textContent =
+            data.conversations ?? 0;
+
+
+        document.getElementById(
+            "questionCount"
+        ).textContent =
+            data.questions ?? 0;
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Statistics error:",
+            error
+        );
+
+
+        document.getElementById(
+            "conversationCount"
+        ).textContent =
+            "0";
+
+
+        document.getElementById(
+            "questionCount"
+        ).textContent =
+            "0";
+
+    }
+
+}
+
+function displayDocuments(
+    documents
+) {
+
+
+    const container =
+        document.getElementById(
+            "documentsList"
+        );
+
+
+    document.getElementById(
+        "documentCount"
+    ).textContent =
+        documents.length;
+
+    if (
+        !documents ||
+        documents.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    ▣
+                </div>
+
+                <h3>
+                    No documents yet
+                </h3>
+
+                <p>
+                    Upload your first study document
+                    to begin.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    container.innerHTML =
+        documents
+            .map(
+                document => {
+
+
+                    const status =
+                        document.status ||
+                        "processing";
+
+
+                    const fileType =
+                        (
+                            document.file_type ||
+                            ""
+                        ).toUpperCase();
+
+
+                    const isReady =
+                        status === "ready";
+
+
+                    return `
+
+                        <article
+                            class="document-card"
+                        >
+
+
+                            <div
+                                class="document-icon"
+                            >
+                                ▣
+                            </div>
+
+
+                            <div
+                                class="document-info"
+                            >
+
+                                <h3>
+
+                                    ${escapeHtml(
+                                        document.filename
+                                    )}
+
+                                </h3>
+
+
+                                <div
+                                    class="document-meta"
+                                >
+
+                                    <span>
+                                        ${fileType}
+                                    </span>
+
+                                    <span>
+                                        ·
+                                    </span>
+
+                                    <span
+                                        class="
+                                            document-status
+                                            ${isReady
+                                                ? "ready"
+                                                : "processing"
+                                            }
+                                        "
+                                    >
+
+                                        ${isReady
+                                            ? "Ready"
+                                            : escapeHtml(status)
+                                        }
+
+                                    </span>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="document-chat-btn"
+                                onclick="openChat(${document.id})"
+                                ${!isReady
+                                    ? "disabled"
+                                    : ""
+                                }
+                            >
+
+                                ${
+                                    isReady
+                                        ? "Open chat →"
+                                        : "Preparing..."
+                                }
+
+                            </button>
+
+
+                        </article>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+function openChat(
+    documentId
+) {
+
+    window.location.href =
+        `chat.html?document=${documentId}`;
+
+}
+
+function openHistory() {
+
+    window.location.href =
+        "history.html";
+
+}
+
+
+function scrollToDocuments(
+    event
+) {
+
+    if (event) {
+
+        event.preventDefault();
+
+    }
+
+
+    const documents =
+        document.getElementById(
+            "documents"
+        );
+
+
+    if (documents) {
+
+        documents.scrollIntoView({
+
+            behavior:
+                "smooth",
+
+            block:
+                "start"
+
+        });
+
+    }
+
+}
+
+function escapeHtml(
+    value
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        value ||
+        "";
+
+
+    return div.innerHTML;
+
+}
+
+function logout() {
+
+    localStorage.removeItem(
+        "access_token"
+    );
+
+
+    localStorage.removeItem(
+        "user"
+    );
+
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+loadDocuments();
+
+loadStats();
+
+
+</script>
+
+
+</body>
+
+</html>
